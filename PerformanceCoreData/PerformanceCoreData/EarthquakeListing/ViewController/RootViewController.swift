@@ -38,11 +38,20 @@ class RootViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 if isVisible {
                     self?.spinner.startAnimating()
+                    self?.setStateForRightBarButtonWhenImport(in: true)
                 }
                 else {
                     self?.spinner.stopAnimating()
+                    self?.setStateForRightBarButtonWhenImport(in: false)
                 }
             }
+        }
+    }
+    
+    //MARK:- Enable/Disable import button when import is in progress
+    fileprivate func setStateForRightBarButtonWhenImport(in progress: Bool){
+        if let rightBarButton = self.navigationItem.rightBarButtonItem {
+            rightBarButton.isEnabled = !progress
         }
     }
     
